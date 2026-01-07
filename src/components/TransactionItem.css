@@ -1,0 +1,54 @@
+.transaction-item {
+  display: flex;
+  background-color: #2e303f;
+  padding: 24px 20px;
+  border-radius: 5px;
+  align-items: center;
+  gap: 10px;
+}
+
+.transaction-item-name {
+  flex: 1;
+}
+
+.transaction-item-category {
+  background-color: #141625;
+  padding: 5px 8px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #686a79;
+}
+
+.transaction-item-amount {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.transaction-item-amount.type-expense {
+  color: #f06292;
+}
+
+.transaction-item-amount.type-income {
+  color: #66bb6a;
+}
+
+.transaction-item-date {
+  font-size: 14px;
+  font-weight: bold;
+  color: #686a79;
+  padding: 4px 15px 0 15px;
+}
+
+.button {
+  background-color: #141625;
+  color: #babbc2;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  &:hover {
+    background-color: #6b6d7e;
+  }
+}
