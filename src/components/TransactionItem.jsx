@@ -8,7 +8,7 @@ const TransactionItem = ({ id, name, amount, type, category, date }) => {
       <div 
         className={`transaction-item-amount type-${type === 'expense' ? 'expense' : 'income'}`}
       >
-        {`${type === 'expense' ? '-' : '+'} ${amount.toLocaleString()} 원`}
+        {`${type === 'expense' ? '-' : '+'} ${Number(amount).toLocaleString()} 원`}
       </div>
       <div className="transaction-item-date">{new Date(date).toLocaleDateString()}</div>
       <button className="button">수정</button>
