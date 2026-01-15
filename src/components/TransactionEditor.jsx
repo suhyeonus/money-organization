@@ -1,11 +1,13 @@
 import './TransactionEditor.css';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TransactionDispatchContext } from '../App';
 
 const categories = ["🍚 식비", "💧 구독", "🏠 생활", "🏢 급여", "💰 금융"];
 
-export default function TransactionEditor({ onSubmit }) {
+export default function TransactionEditor({ type, initData }) {
   const navigate = useNavigate();
+  const { onCreateTransaction, onUpdateTransaction } = useContext(TransactionDispatchContext);
   const [input, setInput] = useState({
     name: '',
     amount: 0,
@@ -13,6 +15,15 @@ export default function TransactionEditor({ onSubmit }) {
     category: categories[0],
     date: new Date(),
   });
+
+  useEffect(() => {
+    if (type === 'EDIT' &&initData) {
+      setInput({
+        ...initData,
+        date: new Date(initData.date),
+      });
+    }
+  }, [initData, type]);
 
   const onChangeInput = (e) => {
     let name = e.target.name;
@@ -29,8 +40,7 @@ export default function TransactionEditor({ onSubmit }) {
   }
 
   const onClickSubmit = () => {
-    if (!onSubmit 
-      || input.name === '' 
+    if (input.name === '' 
       || input.amount === 0 
       || input.type === '' 
       || input.category === '' 
@@ -38,7 +48,12 @@ export default function TransactionEditor({ onSubmit }) {
         alert('입력되지 않은 값이 있습니다.');
         return;
       }
-    onSubmit(input);
+   if (type === 'CREATE') {
+    onCreateTransaction(input.name, input.amount, input.type, input.category, input.date);
+   } else if (type === 'EDIT') {
+    onUpdateTransaction(input.id, input.name, input.amount, input.type, input.category, input.date);
+   }
+   navigate('/', { replace: true });
   }
 
   const getStringifiedDate = (date) => {
