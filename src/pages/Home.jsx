@@ -3,8 +3,10 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TransactionStateContext } from '../App';
 import TransactionItem from '../components/TransactionItem';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Home = () => {
+  usePageTitle("한입 가계부");
   const navigate = useNavigate();
   const transactions = useContext(TransactionStateContext);
   const sortedTransactions = 

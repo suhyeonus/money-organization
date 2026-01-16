@@ -2,8 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import TransactionEditor from '../components/TransactionEditor';
 import { TransactionStateContext } from '../App';
+import usePageTitle from '../hooks/usePageTitle';
 
 const EditTransaction = () => {
+  usePageTitle("한입 가계부 - 기록 수정하기");
+
   const { id } = useParams();
   const initData = useContext(TransactionStateContext).find(transaction => transaction.id === Number(id));
 
